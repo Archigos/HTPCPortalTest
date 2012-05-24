@@ -1,7 +1,7 @@
 <?php
 $version = 2.0;
 
-/** Verify 'settings.ini' is available, if not, attempt to use defaults below; */
+/* Verify 'settings.ini' is available, if not, attempt to use defaults below; */
 $ini_ini_filename = 'settings.ini';
 if (@is_readable($ini_ini_filename)) {
 	$ini = parse_ini_file($ini_ini_filename, FALSE);
@@ -9,7 +9,7 @@ if (@is_readable($ini_ini_filename)) {
 else {
 	unset($ini);
 }
-/** Variables to set if value is missing from settings
+/* Variables to set if value is missing from settings
  *  Around the site, use the following Syntax for calling your links:
  *		'zzzz' is 4 character abbreviation for AppName
  *		$zzzzhost		= The Host for AppName
@@ -119,6 +119,20 @@ if (!isset($ini['external_css'])) { $ini['external_css']    = 'includes/css/port
 
 // Array containing list of filenames which should be omitted during directory loading. Wildcards aren't allowed.
 $ini['ignore_files'] = array('.', '..', $ini_ini_filename, $ini['description_filename'], $ini['cache_dir'], basename($_SERVER['SCRIPT_NAME']), '.htaccess', '.htpasswd', 'Thumbs.db', 'error_log', 'access_log', 'cgi-bin', '_notes');
+
+// RSS Feeds
+$RSSToggle = '<a href="#" onClick="ddaccordion.collapseall(\'technology\'); return false">Collapse all</a>  | <a href="#" onClick="ddaccordion.expandall(\'technology\'); return false">Expand all</a>';
+
+if (!isset($ini['rsscount'])) { $ini['rsscount']            = 20; }
+$rsscount = $ini['rsscount'];
+
+function writeRSSName($RSSName) {
+	echo '<div class="technology">' . $RSSName . '</div>';
+}
+
+function writeRSS($feed,$rsscount) {
+	echo '<div class="thelanguage"><script language="JavaScript" src="includes/required/feed2js/feed2js.php?src=' . $feed . '&amp;num=' . $rsscount . '" type="text/javascript"></script></div>';
+}
 
 // JSON API (Experimental)
 $jsonarray1 = array(

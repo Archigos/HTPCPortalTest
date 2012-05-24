@@ -1,11 +1,14 @@
 #HTPC Portal
 
-The HTPCPortal is a PHP based 'wrapper' for use on your home network, providing quick access to all of your HTPC related apps and sites as well as other commonly used sites (like web based email). Although there are other 'consolidation' sites out there, like [Maraschino](http://maraschinoproject.com), which incorporates information from multiple HTPC Apps in a great fashion, sometimes there's a need to quickly swap between the actual applications as opposed to just viewing partial info.
+The HTPCPortal is a PHP based 'wrapper' for use on your home network, providing quick access to all of your HTPC related apps and sites as well as other commonly used sites. Although there are other 'consolidation' sites out there, like [Maraschino](http://maraschinoproject.com), which incorporates information from multiple HTPC Apps in a great fashion, sometimes there's a need to quickly swap between the actual applications as opposed to just viewing partial info.
 
-![preview thumb](http://goo.gl/EfKk4)
-Disregard the Maraschino 'issues' in the above screenshot, it was taken on a low resolution (1366x768) laptop and the Pre-Frodo 'fix' hadn't been applied to Maraschino yet.
-![ipad version](http://goo.gl/N33Fm)
-iPad specific version made to utilize it's native 1024x768 screen resolution. As you notice, the left hand menu appears different in this version and is ideally setup for 7 icon based links (You can substitute 2 'normal links' per 'image link' replaced).
+![preview thumb](https://photos-1.dropbox.com/i/o/u6TwI5WLm7i8clWRwQSKkWs8pyCpHVF9l6AOvIYRIas/55460583/1337936400/fe03233/HTPCPortal-Home.png)
+
+![ipad version](https://photos-3.dropbox.com/i/o/MR_bPRclfLzfu9-e16HCCobeMH5m87qvUt0OLtpYhrk/55460583/1337936400/aae7beb/iPad-FullScreen.png)
+iPad specific version made to utilize it's native 1024x768 screen resolution. (Shown Full Screen with "Atomic Browser" for iOS.)
+
+![panel demo](https://photos-3.dropbox.com/i/o/QLLFj7KWBw4zXMM-LmikWDfAsrnX5DMQYd3OJt0BTeo/55460583/1337936400/8b6211b/HTPCPortal-Panel.png)
+A demonstration of the AJAX Panel showing the projects thread area on the [Constellation Forums](http://constellation.ictcsc.net/index.php?board=33.0).
 
 ## Dependencies
 HTPCPortal requires an Apache/PHP Webserver to be running on the machine or network and must have PHP 5 configured correctly.
