@@ -14,6 +14,11 @@ require 'includes/required/header.php';
 <body>
 <!-- Left Panel: Start -->
 <div id="leftofframe">
+
+<!-- This is a temp button for use while writing the new Configuration page that is still in "Alpha"
+<div id="nav"><center><a class="classpanel" rel="ajaxpanel" data-loadtype="iframe" href="configuration.php">Reload Configuration Page</a></center></div>
+-->
+
 	<!-- Personal Links: Start -->
 	<div id="nav"><strong>Portal </strong> 
 		<a class="classpanel" href="http://constellation.ictcsc.net/index.php?board=33.0" rel="ajaxpanel" >Forums</a>
@@ -40,6 +45,7 @@ require 'includes/required/header.php';
 <div id="navi" class="navi">
 	<ul>
 		<li><a href="remote.php" rel="ajaxpanel" data-loadtype="iframe">Remote</a></li>
+		<li><a href="configuration.php" rel="ajaxpanel" data-loadtype="iframe">Config</a></li>
 		<li><?php writeAppURL($CallHP_Mara,Maraschino); ?></li>
         <li><?php writeAppURL($CallHP_Sab,SabNZBd); ?></li>
         <li><?php writeAppURL($CallHP_uTor,'&micro;Torrent'); ?></li>
