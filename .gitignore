@@ -1,4 +1,8 @@
 # Ignore
+includes/required/feed2js/magpie/cache
+!includes/required/feed2js/magpie/cache/.gitignore
+includes/required/feed2js/magpie/cache_utf8
+!includes/required/feed2js/magpie/cache_utf8/.gitignore
 /Notes.md
 /settings.ini
 /settings-original.ini
@@ -6,7 +10,7 @@
 /cleanup.ps1
 
 # Crap
-Thumbs.db
+[Tt]humbs.db
 Desktop.ini
 .DS_Store*
 ehthumbs.db

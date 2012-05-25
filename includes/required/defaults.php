@@ -132,6 +132,10 @@ function writeAppURL($AppCall,$AppName) {
 function writeAppFull($AppURL,$ImageName) {
 	echo '<a class="classpanel" target="myiframe" href="http://' . $AppURL . '"><img src="includes/images/apps/' . $ImageName . '.png" /></a>';
 }
+function writeTopNav($AppName) {
+	echo '<a class="classpanel" href="#">' . $AppName . '</a>';
+}
+
 
 // NZB Sites
 $NZBMatrix													= 'nzbmatrix.com/nzb.php?';
