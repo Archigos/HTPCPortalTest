@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>HTPCPortal (Test Branch) by Archigos</title>
+    <title>HTPCPortal (Test Branch)</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -15,37 +15,37 @@
     <link rel="stylesheet" href="stylesheets/ie.css">
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
   </head>
   <body>
       <div id="header">
         <nav>
-          <li class="fork"><a href="https://github.com/Archigos/HTPCPortalTest">View On GitHub</a></li>
+          <li class="fork"><a href="https://github.com/Archigos/HTPCPortal">View On GitHub (Master)</a></li>
+		  <li class="fork"><a href="https://github.com/Archigos/HTPCPortalTest">View On GitHub (Beta)</a></li>
           <li class="downloads"><a href="https://github.com/Archigos/HTPCPortalTest/zipball/master">ZIP</a></li>
           <li class="downloads"><a href="https://github.com/Archigos/HTPCPortalTest/tarball/master">TAR</a></li>
           <li class="title">DOWNLOADS</li>
         </nav>
       </div><!-- end header -->
-
     <div class="wrapper">
-
       <section>
         <div id="title">
-          <h1>HTPCPortal (Test Branch)</h1>
+          <h1><i>HTPCPortal (Test Branch)</i></h1>
           <p>Beta Platform for 'HTPCPortal' (Things on this branch will probably break often)</p>
           <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/Archigos">Archigos</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+          <span class="credits left">Project maintained by <a href="https://github.com/Archigos">Archigos</a> and <a href="https://github.com/hernandito">hernandito</a></span>
+          <span class="credits right"></span>
         </div>
 
         <p>The HTPCPortal is a PHP based 'wrapper' for use on your home network, providing quick access to all of your HTPC related apps and sites as well as other commonly used sites. Although there are other 'consolidation' sites out there, like <a href="http://maraschinoproject.com">Maraschino</a>, which incorporates information from multiple HTPC Apps in a great fashion, sometimes there's a need to quickly swap between the actual applications as opposed to just viewing partial info.</p>
 
-<p><img src="https://photos-1.dropbox.com/i/o/u6TwI5WLm7i8clWRwQSKkWs8pyCpHVF9l6AOvIYRIas/55460583/1337936400/fe03233/HTPCPortal-Home.png" alt="preview thumb"></p>
+<p><img src="images/default.png" alt="preview thumb"></p>
 
-<p><img src="https://photos-3.dropbox.com/i/o/MR_bPRclfLzfu9-e16HCCobeMH5m87qvUt0OLtpYhrk/55460583/1337936400/aae7beb/iPad-FullScreen.png" alt="ipad version">
+<p><img src="images/iPad-FullScreen.png" alt="[need to take new screenshot]">
 iPad specific version made to utilize it's native 1024x768 screen resolution. (Shown Full Screen with "Atomic Browser" for iOS.)</p>
 
-<p><img src="https://photos-3.dropbox.com/i/o/QLLFj7KWBw4zXMM-LmikWDfAsrnX5DMQYd3OJt0BTeo/55460583/1337936400/8b6211b/HTPCPortal-Panel.png" alt="panel demo">
+<p><img src="images/Panel.png" alt="configuration screen">
+
+<p><img src="images/Panel-Forum.png" alt="configuration screen">
 A demonstration of the AJAX Panel showing the projects thread area on the <a href="http://constellation.ictcsc.net/index.php?board=33.0">Constellation Forums</a>.</p>
 
 <h2>Dependencies</h2>
@@ -78,10 +78,11 @@ maraport    =   7000
 [...] etc.
 
 [APIKeys]       // This section is not currently used, ignore if you'd like.
-sabapi      =   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  // API for SabNZBd+
-sbapi       =   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  // API for SickBeard
-matrixapi   =   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  // API for NZBMatrix.com
-nzbsuapi    =   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  // API for NZB.su
+sabapi     =   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  // API for SabNZBd+
+sbapi      =   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  // API for SickBeard
+couchapi   =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  // API for CouchPotato
+matrixapi  =   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  // API for NZBMatrix.com
+nzbsuapi   =   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  // API for NZB.su
 
 [RSS]
 rsscount    =   0   // The number of entries you want shown. 0 = All available
@@ -98,13 +99,6 @@ above. You should verify that the RSS feed is valid from the Editor page prior t
 it. If you'd like to use an image for your RSS Feed, make it 14x14 and mimic 'feed5name'.
 */
 </code></pre>
-
-<hr><h2>Why Two Repos?</h2>
-
-<p>This project is maintained on two seperate Repos, where <a href="https://github.com/Archigos/HTPCPortal">HTPCPortal</a> acts as the "Master" or release (stable) version; and <a href="https://github.com/Archigos/HTPCPortalTest">HTPCPortalTest</a> acts as cutting edge (read as: unstable and may/will probably break often).<br>
-So, again, based on how GitHub works... why two repos and not two branchs? The simple answer is, I got drunk after I made my third (maybe fourth) commit to the first repo and decided I wanted to be safe and create a secondary place for testing... and, oops. Wrong option, but works just the same.</p>
-
-<hr><p>More detailed information will be included later...</p>
       </section>
 
     </div>
