@@ -18,11 +18,14 @@ require 'includes/required/header.php';
 <!-- This is a temp button for use while writing the new Configuration page that is still in "Alpha"
 <div id="nav"><center><a class="classpanel" rel="ajaxpanel" data-loadtype="iframe" href="configuration.php">Reload Configuration Page</a></center></div>
 -->
-
 	<!-- Personal Links: Start -->
-	<div id="nav"><strong>Portal </strong> 
-		<a class="classpanel" href="http://constellation.ictcsc.net/index.php?board=33.0" rel="ajaxpanel" >Forums</a>
-		<a class="classpanel" href="https://github.com/Archigos/HTPCPortal" target="_new" >GitHub</a>
+	<div id="logo"><center><img src="includes/images/site/logo.png" width="125px" /></center></div>
+	<div id="nav">
+		<center>
+			<a class="classpanel" href="http://constellation.ictcsc.net/index.php?board=33.0" rel="ajaxpanel">Forum</a>
+			<a class="classpanel" href="https://github.com/Archigos/HTPCPortal" target="_new">GitHub</a>
+			<a class="classpanel" href="configuration.php" rel="ajaxpanel" data-loadtype="iframe" title="Configuration">&sect;</a>
+		</center>
 	</div>
 	<!-- Personal Links: End -->
 	<div id="rss" class="rss">
@@ -45,7 +48,6 @@ require 'includes/required/header.php';
 <div id="navi" class="navi">
 	<ul>
 		<li><a href="remote.php" rel="ajaxpanel" data-loadtype="iframe">Remote</a></li>
-		<li><a href="configuration.php" rel="ajaxpanel" data-loadtype="iframe">Config</a></li>
 		<li><?php writeAppURL($CallHP_Mara,Maraschino); ?></li>
 		<li><?php writeAppURL($CallHP_Mara,Downloaders); ?>
 			<ul>

@@ -55,7 +55,7 @@ $CallHP_Mara												= $marahost . ":" . $maraport;
 
 // SickBeard
 if (!isset($ini['sick'])) { $ini['sick']                    = 'localhost'; }
-if (!isset($ini['sbport'])) { $ini['sbport']                = 8081; }
+if (!isset($ini['sbport'])) { $ini['sbport']                = 8080; }
 if (!isset($ini['sbapi'])) { $ini['sbapi']                  = ''; }				// API Key
 $sickhost													= $ini['sick'];
 $sickport													= $ini['sbport'];
@@ -79,49 +79,49 @@ $CallHP_Sab													= $sabnhost . ":" . $sabnport;
 
 // uTorrent
 if (!isset($ini['utor'])) { $ini['utor']                    = 'localhost'; }
-if (!isset($ini['utport'])) { $ini['utport']                = 85; }
+if (!isset($ini['utport'])) { $ini['utport']                = 32459; }
 $utorhost													= $ini['utor'];
 $utorport													= $ini['utport'];
 $CallHP_uTor												= $utorhost . ":" . $utorport . "/gui/";
 
 // Headphones
 if (!isset($ini['headphones'])) { $ini['headphones']        = 'localhost'; }
-if (!isset($ini['headport'])) { $ini['headport']            = 85; }
+if (!isset($ini['headport'])) { $ini['headport']            = 8181; }
 $headhost													= $ini['headphones'];
 $headport													= $ini['headport'];
 $CallHP_Head												= $headhost . ":" . $headport;
 
 // Transmission
 if (!isset($ini['transmission'])) { $ini['transmission']    = 'localhost'; }
-if (!isset($ini['tranport'])) { $ini['tranport']            = 85; }
+if (!isset($ini['tranport'])) { $ini['tranport']            = 51413; }
 $tranhost													= $ini['transmission'];
 $tranport													= $ini['tranport'];
 $CallHP_Tran												= $tranhost . ":" . $tranport;
 
 // jDownloader
 if (!isset($ini['jDown'])) { $ini['jDown']					= 'localhost'; }
-if (!isset($ini['jDport'])) { $ini['jDport']				= 85; }
+if (!isset($ini['jDport'])) { $ini['jDport']				= 10025; }
 $jdowhost													= $ini['jDown'];
 $jdowport													= $ini['jDport'];
 $CallHP_Jdown												= $jDown . ":" . $jDport;
 
 // AutoMovies
 if (!isset($ini['autom'])) { $ini['autom']					= 'localhost'; }
-if (!isset($ini['amport'])) { $ini['amport']				= 85; }
+if (!isset($ini['amport'])) { $ini['amport']				= 8087; }
 $aumohost													= $ini['autom'];
 $aumoport													= $ini['amport'];
 $CallHP_AutoM												= $autom . ":" . $amport;
 
 // TVHeadend
 if (!isset($ini['tvhe'])) { $ini['tvhe']					= 'localhost'; }
-if (!isset($ini['tvhport'])) { $ini['tvhport']				= 85; }
+if (!isset($ini['tvhport'])) { $ini['tvhport']				= 9981; }
 $tvhehost													= $ini['tvhe'];
 $tvheport													= $ini['tvhport'];
 $CallHP_TVHe												= $tvhe . ":" . $tvhport;
 
 // SubSonic
 if (!isset($ini['subs'])) { $ini['subs']					= 'localhost'; }
-if (!isset($ini['ssport'])) { $ini['ssport']				= 85; }
+if (!isset($ini['ssport'])) { $ini['ssport']				= 4040; }
 $subshost													= $ini['subs'];
 $subsport													= $ini['ssport'];
 $CallHP_subs												= $subs . ":" . $ssport;
@@ -136,10 +136,10 @@ function writeTopNav($AppName) {
 	echo '<a class="classpanel" href="#">' . $AppName . '</a>';
 }
 
-
 // NZB Sites
 $NZBMatrix													= 'nzbmatrix.com/nzb.php?';
-$NZBMatrixUser												= '';
+if (!isset($ini['matrixuser'])) { $ini['matrixuser']		= ''; }
+$NZBMatrixUser												= $ini['matrixuser'];
 if (!isset($ini['matrixapi'])) { $ini['matrixapi']          = ''; }
 $NZBMatrixAPI 												= $ini['matrixapi'];
 if (!isset($ini['nzbsuapi'])) { $ini['nzbsuapi']            = ''; }
