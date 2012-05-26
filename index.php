@@ -19,7 +19,7 @@ require 'includes/required/header.php';
 <div id="nav"><center><a class="classpanel" rel="ajaxpanel" data-loadtype="iframe" href="configuration.php">Reload Configuration Page</a></center></div>
 -->
 	<!-- Personal Links: Start -->
-	<div id="logo"><center><img src="includes/images/site/logo.png" width="125px" /></center></div>
+	<div id="logo"><img src="includes/images/site/logo.png" width="125px" /></div>
 	<div id="nav">
 		<center>
 			<a class="classpanel" href="http://constellation.ictcsc.net/index.php?board=33.0" rel="ajaxpanel">Forum</a>

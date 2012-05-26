@@ -21,14 +21,10 @@ body {
 	left: 4px;
 }
 #logo {
-	font: 11px sans-serif;
-	padding: 5px 5px 0px 5px;
-	margin: 3px 3px 3px 0px;
-	top: 24px;
+	padding: 0px 0px 0px 0px;
+	margin: 1px 0px -1px -5px;
 	width: 200px;
-	height: auto;
-	border: thin solid #4D4D4D;
-	left: 4px;
+	height: 24px;
 }
 #nav {
 	font: 11px sans-serif;
