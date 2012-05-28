@@ -16,38 +16,24 @@ require 'includes/required/header.php';
 <div id="leftofframe">
 
 <!-- This is a temp button for use while writing the new Configuration page that is still in "Alpha"
-<div id="nav"><center><a class="classpanel" rel="ajaxpanel" data-loadtype="iframe" href="configuration.php">Reload Configuration Page</a></center></div>
+<div id="nav"><center><a class="classpanel" rel="ajaxpanel" data-loadtype="iframe" href="includes/panels/configuration.php">Reload Configuration Page</a></center></div>
 -->
-	<!-- Personal Links: Start -->
-	<div id="logo"><img src="includes/images/site/logo.png" width="125px" /></div>
-	<div id="nav">
-		<center>
-			<a class="classpanel" href="http://constellation.ictcsc.net/index.php?board=33.0" rel="ajaxpanel">Forum</a>
-			<a class="classpanel" href="https://github.com/Archigos/HTPCPortal" target="_new">GitHub</a>
-			<a class="classpanel" href="configuration.php" rel="ajaxpanel" data-loadtype="iframe" title="Configuration">&sect;</a>
-		</center>
-	</div>
-	<!-- Personal Links: End -->
-	<div id="rss" class="rss">
-		<?php echo $RSSToggle ?>
-		<?php writeRSSName($ini['feed1name']); ?>
-        <?php writeRSS($ini['feed1'],$rsscount); ?>
-		<?php writeRSSName($ini['feed2name']); ?>
-        <?php writeRSS($ini['feed2'],$rsscount); ?>
-		<?php writeRSSName($ini['feed3name']); ?>
-        <?php writeRSS($ini['feed3'],$rsscount); ?>
-		<?php writeRSSName($ini['feed4name']); ?>
-        <?php writeRSS($ini['feed4'],$rsscount); ?>
-		<?php writeRSSName($ini['feed5name']); ?>
-        <?php writeRSS($ini['feed5'],$rsscount); ?>
-    </div>
+	<?php
+		require 'modules/logo.php';
+	?>
+	<!-- Modules: Start -->
+	<?php
+		if ($rsson=="1")
+			include 'modules/rss.php';
+	?>
+	<!-- Modules: End -->
 </div>
 <!-- Left Panel: End -->
 
 <!-- Top Navigation: Start -->
 <div id="navi" class="navi">
 	<ul>
-		<li><a href="remote.php" rel="ajaxpanel" data-loadtype="iframe">Remote</a></li>
+		<li><a href="includes/panels/remote.php" rel="ajaxpanel" data-loadtype="iframe">Remote</a></li>
 		<li><?php writeAppURL($CallHP_Mara,Maraschino); ?></li>
 		<li><?php writeAppURL($CallHP_Mara,Downloaders); ?>
 			<ul>
@@ -55,8 +41,8 @@ require 'includes/required/header.php';
 				<li><?php writeAppFull($CallHP_uTor,uTorrent); ?></li>
 			</ul>
 		</li>
-        <li><?php writeAppURL($CallHP_Sick,SickBeard); ?></li>
-        <li><?php writeAppURL($CallHP_Couch,CouchPotato); ?></li>
+		<li><?php writeAppURL($CallHP_Sick,SickBeard); ?></li>
+		<li><?php writeAppURL($CallHP_Couch,CouchPotato); ?></li>
         <li><?php writeTopNav(Maxtrix); ?>
             <ul>
                 <li><a href="http://<?php echo $NZBMatrix ?>category=Movies" target="myiframe" title="Movies"><img src="includes/images/movies.png" width="104" height="104" /></a></li>

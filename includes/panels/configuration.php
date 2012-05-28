@@ -1,7 +1,16 @@
 <?php
-require 'includes/required/defaults.php';
-require 'includes/required/header.php';
+require '../required/defaults.php';
+require '../required/header.php';
+
+$ini_ini_filename = '..\..\settings.ini';
+if (@is_readable($ini_ini_filename)) {
+	$ini = parse_ini_file($ini_ini_filename, FALSE);
+}
+else {
+	unset($ini);
+}
 ?>
+<link rel="stylesheet" type="text/css" href="../css/portal.css" />
 
 <div id="configPageHeader"><strong>Welcome to the HTPCPortal Configuration page.</strong><br />
 This page does NOT currently create or alter your configuration and simply displays the information for you. This will hopefully change shortly after I'm happy with the overall layout and design.<br /><br />
@@ -9,13 +18,12 @@ This page does NOT currently create or alter your configuration and simply displ
 
 <div id="nav">
 <?php
-$file = "settings.ini";
+$file = "..\..\settings.ini";
+$filename = "settings.ini";
 if (!(file_exists($file))) {
-	echo ("<strong>$file</strong> The file doesn't exist.<br /><br />");
-	echo ("&nbsp;&nbsp;Please:<br />&nbsp;&nbsp;Copy 'settings-default.ini' to 'settings.ini'");
-	
+	echo ("<strong>$filename</strong> The file doesn't exist.");
 	} else {
-	echo ("<strong>$file</strong> File exists");
+	echo ("<strong>$filename</strong> File exists");
 }
 ?>
 </div>	
@@ -25,11 +33,11 @@ if (!(file_exists($file))) {
         <td colspan="4" align="center" id="nav"><strong>NZB Sites</strong></td>
     </tr>
 	<tr>
-    	<td width="75" height="65" rowspan="4" align="center"><img src="includes/images/apps/XBMC.png" title="XBMC" /></td>
+    	<td width="75" height="65" rowspan="4" align="center"><img src="../images/apps/XBMC.png" title="XBMC" /></td>
         <td width="75">Hostname:</td>
         <td width="20%"><?php echo $ini['xbmc'] ?></td>
         <td rowspan="4"></td>
-    	<td width="75" height="65" rowspan="4" align="center"><img src="includes/images/apps/Plex.png" title="Plex" /></td>
+    	<td width="75" height="65" rowspan="4" align="center"><img src="../images/apps/Plex.png" title="Plex" /></td>
         <td width="75">Hostname:</td>
         <td width="20%"><?php echo $ini['plex'] ?></td>
         <td rowspan="4"></td>
@@ -64,15 +72,15 @@ if (!(file_exists($file))) {
     	<td colspan="11" align="center" id="nav"><strong>Management</strong></td>
     </tr>
 	<tr>
-    	<td rowspan="4" align="center"><img src="includes/images/apps/Maraschino.png" title="Maraschino" /></td>
+    	<td rowspan="4" align="center"><img src="../images/apps/Maraschino.png" title="Maraschino" /></td>
         <td>Hostname:</td>
         <td><?php echo $ini['mara'] ?></td>
 		<td rowspan="4"></td>
-    	<td rowspan="4" align="center"><img src="includes/images/apps/SickBeard.png" title="SickBeard" /></td>
+    	<td rowspan="4" align="center"><img src="../images/apps/SickBeard.png" title="SickBeard" /></td>
         <td>Hostname:</td>
         <td><?php echo $ini['sick'] ?></td>
 		<td rowspan="4"></td>
-    	<td rowspan="4" align="center"><img src="includes/images/apps/CouchPotato.png" title="CouchPotato" /></td>
+    	<td rowspan="4" align="center"><img src="../images/apps/CouchPotato.png" title="CouchPotato" /></td>
         <td width="75">Hostname:</td>
         <td width="20%"><?php echo $ini['couch'] ?></td>
     </tr>
@@ -104,15 +112,15 @@ if (!(file_exists($file))) {
     	<td colspan="11" align="center" id="nav"><strong>Downloaders</strong></td>
     </tr>
 	<tr>
-    	<td rowspan="4" align="center"><img src="includes/images/apps/SabNZBd.png" title="SabNZBd+" /></td>
+    	<td rowspan="4" align="center"><img src="../images/apps/SabNZBd.png" title="SabNZBd+" /></td>
         <td>Hostname:</td>
         <td><?php echo $ini['sab'] ?></td>
 		<td rowspan="4"></td>
-    	<td rowspan="4" align="center"><img src="includes/images/apps/uTorrent.png" title="&micro;Torrent" /></td>
+    	<td rowspan="4" align="center"><img src="../images/apps/uTorrent.png" title="&micro;Torrent" /></td>
         <td>Hostname:</td>
         <td><?php echo $ini['utor'] ?></td>
 		<td rowspan="4"></td>
-    	<td rowspan="4" align="center"><img src="includes/images/apps/jDownloader.png" title="jDownloader" /></td>
+    	<td rowspan="4" align="center"><img src="../images/apps/jDownloader.png" title="jDownloader" /></td>
         <td>Hostname:</td>
         <td><?php echo $ini['jDown'] ?></td>
     </tr>
@@ -144,15 +152,15 @@ if (!(file_exists($file))) {
     	<td colspan="11" align="center" id="nav"><strong>Other</strong></td>
     </tr>
 	<tr>
-    	<td rowspan="4" align="center"><img src="includes/images/apps/Headphones.png" title="Headphones" /></td>
+    	<td rowspan="4" align="center"><img src="../images/apps/Headphones.png" title="Headphones" /></td>
         <td>Hostname:</td>
         <td><?php echo $ini['headphones'] ?></td>
 		<td rowspan="4"></td>
-    	<td rowspan="4" align="center"><img src="includes/images/apps/AutoMovies.png" title="AutoMovies" /></td>
+    	<td rowspan="4" align="center"><img src="../images/apps/AutoMovies.png" title="AutoMovies" /></td>
         <td>Hostname:</td>
         <td><?php echo $ini['autom'] ?></td>
 		<td rowspan="4"></td>
-    	<td rowspan="4" align="center"><img src="includes/images/apps/SubSonic.png" title="SubSonic" /></td>
+    	<td rowspan="4" align="center"><img src="../images/apps/SubSonic.png" title="SubSonic" /></td>
         <td>Hostname:</td>
         <td><?php echo $ini['subs'] ?></td>
     </tr>
@@ -181,15 +189,15 @@ if (!(file_exists($file))) {
         <td>&nbsp;</td>
     </tr>
 	<tr>
-    	<td rowspan="4" align="center"><img src="includes/images/apps/Transmission.png" title="Transmission" /></td>
+    	<td rowspan="4" align="center"><img src="../images/apps/Transmission.png" title="Transmission" /></td>
         <td>Hostname:</td>
         <td><?php echo $ini['transmission'] ?></td>
 		<td rowspan="4"></td>
-    	<td rowspan="4" align="center"><img src="includes/images/apps/TVHeadend.png" title="TVHeadend" /></td>
+    	<td rowspan="4" align="center"><img src="../images/apps/TVHeadend.png" title="TVHeadend" /></td>
         <td>Hostname:</td>
         <td><?php echo $ini['tvhe'] ?></td>
 		<td rowspan="4"></td>
-    	<td rowspan="4" align="center"><img src="includes/images/apps/XBMC.png" /></td>
+    	<td rowspan="4" align="center"><img src="../images/apps/XBMC.png" /></td>
         <td>Hostname:</td>
         <td>&nbsp;</td>
     </tr>

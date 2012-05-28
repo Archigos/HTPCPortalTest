@@ -1,10 +1,8 @@
 <?php
-require 'includes/required/defaults.php';
+require '../required/defaults.php';
  ?>
-<link rel="stylesheet" type="text/css" href="includes/css/portal.css" />
-<p style="color:white">Well, I know this page looks like crap... for now, I'm just screwing around with a layout... the Editor link is the only thing working.<br /><br />
-Speaking of Editor link... I'll explain that more later, but for now, use it and the output you get should be placed in your 'settings.ini' in one of the five "feedX" variables.</p>
-<a class="classpanel" href="includes/required/feed2js/build.php">RSS Editor</a><br />
+<link rel="stylesheet" type="text/css" href="../css/portal.css" />
+<p style="color:white">Well, I know this page looks like crap... for now, I'm just screwing around with a layout... and trying to figure out some things with JSON.</p>
 	<div id="commands"><strong>XBMC </strong>
 		<?php echo $JSONStart ?>XBMC.TakeScreenshot">Screenshot</a>
 		<?php echo $JSONStart ?>XBMC.Action(ShowSubtitles)">Subtitles</a>
