@@ -14,10 +14,11 @@ require 'includes/required/header.php';
 <body>
 <!-- Left Panel: Start -->
 <div id="leftofframe">
-
-<!-- This is a temp button for use while writing the new Configuration page that is still in "Alpha"
-<div id="nav"><center><a class="classpanel" rel="ajaxpanel" data-loadtype="iframe" href="includes/panels/configuration.php">Reload Configuration Page</a></center></div>
--->
+	<?php
+		if ($developer=="1")
+			echo '<div id="nav"><center><a class="classpanel" rel="ajaxpanel" data-loadtype="iframe" href="includes/panels/configuration.php">Reload Configuration Page</a></center></div>';
+	?>
+	<!-- Create Logo and Forum/GitHub/Config -->
 	<?php
 		require 'modules/logo.php';
 	?>
@@ -32,17 +33,9 @@ require 'includes/required/header.php';
 
 <!-- Top Navigation: Start -->
 <div id="navi" class="navi">
-	<ul>
-		<li><a href="includes/panels/remote.php" rel="ajaxpanel" data-loadtype="iframe">Remote</a></li>
-		<li><?php writeAppURL($CallHP_Mara,Maraschino); ?></li>
-		<li><?php writeAppURL($CallHP_Mara,Downloaders); ?>
-			<ul>
-				<li><?php writeAppFull($CallHP_Sab,SabNZBd); ?></li>
-				<li><?php writeAppFull($CallHP_uTor,uTorrent); ?></li>
-			</ul>
-		</li>
-		<li><?php writeAppURL($CallHP_Sick,SickBeard); ?></li>
-		<li><?php writeAppURL($CallHP_Couch,CouchPotato); ?></li>
+	<?php
+		require 'modules/nav.php';
+	?>
         <li><?php writeTopNav(Maxtrix); ?>
             <ul>
                 <li><a href="http://<?php echo $NZBMatrix ?>category=Movies" target="myiframe" title="Movies"><img src="includes/images/movies.png" width="104" height="104" /></a></li>

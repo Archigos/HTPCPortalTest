@@ -2,7 +2,7 @@
 require '../required/defaults.php';
 require '../required/header.php';
 
-$ini_ini_filename = '..\..\settings.ini';
+$ini_ini_filename = '../../settings.ini';
 if (@is_readable($ini_ini_filename)) {
 	$ini = parse_ini_file($ini_ini_filename, FALSE);
 }
@@ -229,7 +229,7 @@ if (!(file_exists($file))) {
     	<td colspan="11" align="center" id="nav"><strong>RSS Info</strong></td>
 	</tr>
 	<tr>
-		<td colspan="3" align="center"><a class="classpanel" href="includes/required/feed2js/build.php">RSS Editor</a></td>
+		<td colspan="3" align="center"><a class="classpanel" href="../required/feed2js/build.php">RSS Editor</a></td>
 		<td colspan="8">To create valid RSS Feeds for this site, you must click the link to the left and follow the directions.</td>
 	</tr>
 </table>
