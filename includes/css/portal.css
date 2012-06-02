@@ -214,37 +214,6 @@ iframe#ifrm {
     border: 1px none #D0D0D0;
 }
 
-/* JSON Workaround */
-#commands {
-	font: 11px sans-serif;
-	color: #CCC;
-	padding: 5px;
-	margin: 3px 3px 3px -1px;
-	top: 24px;
-	width: 250px;
-	height: auto;
-	border: thin solid #4D4D4D;
-}
-#commands strong {
-	color: #FFCE0D;
-	padding: 0 7px 0 7px;
-}
-
-#json {
-    position: absolute;
-    z-index: 10009;
-    right: 2px;
-    top: 2px;
-}
-iframe#jsonresponse {
-    position: absolute;
-    right: 5px;
-    top: 2px;
-    border: 1px none #D0D0D0;
-    width: 75px;
-    height: 25px;
-}
-
 /* AJAX Panel */
 .ddajaxsidepanel {
 	z-index: 100000;
@@ -277,12 +246,115 @@ padding: 10px;
 overflow: scroll;
 }
 
-/* For Creating "Keyboard" Keys */
-/*
+/* Configuration Page Specific */
+#configPageHeader {
+	font: 13px sans-serif;
+	color: #CCC;
+	padding: 5px;
+	margin: 3px 3px 3px -1px;
+	top: 24px;
+	height: auto;
+}
+#configPageHeader strong {
+	color: #FFCE0D;
+}
+#configPage {
+	font: 11px sans-serif;
+	color: #CCC;
+	padding: 5px;
+	margin: 3px 3px 3px -1px;
+	top: 24px;
+	width: 200px;
+	height: auto;
+	border: thin solid #4D4D4D;
+}
+#configPage strong {
+	color: #FFCE0D;
+}
+.configTable {
+	font-size: 11px;
+	color: #CCC;
+}
+.configTable tr {
+	
+}
+.configTable td {
+	
+}
+
+/* Remote Page Specific */
+#remote {
+	font: 11px sans-serif;
+	color: #CCC;
+	padding: 5px;
+	margin: 3px 3px 3px -1px;
+	border: thin solid #4D4D4D;
+}
+#remote strong {
+	color: #FFCE0D;
+	padding: 0 7px 0 7px;
+}
+#remote a {
+	background-color: #212121;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 1px;
+	border: 1px solid #4D4D4D;
+	display: inline-block;
+	color: #999;
+	padding: 2px 12px;
+	text-decoration: none;
+}
+#remote a:hover {
+    background-color: #FFCE0D;
+    color: #333;
+}
+#remote button {
+	font: 11px sans-serif;
+	background-color: #212121;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 1px;
+	border: 1px solid #4D4D4D;
+	display: inline-block;
+	color: #999;
+	padding: 2px 12px;
+	text-decoration: none;
+}
+#remote button:hover {
+    background-color: #FFCE0D;
+    color: #333;
+}
+
+#output {
+	border: 1px solid #AAAAAA;
+	padding: 3px;
+	margin: 2px;
+	height: 400px;
+	max-height: 400px;
+	overflow: scroll;
+}
+
+
+#json {
+    position: absolute;
+    z-index: 10009;
+    right: 2px;
+    top: 2px;
+}
+iframe#jsonresponse {
+    position: absolute;
+    right: 5px;
+    top: 2px;
+    border: 1px none #D0D0D0;
+    width: 75px;
+    height: 25px;
+}
+
+/* For Creating "Keyboard" Keys
  * Original Author (of Keyboard related section only):  Michael Hüneburg
  * Website: http://michaelhue.com/keyscss
  */
-
 /* Base style, essential for every key. */
 kbd, .key {
 	display: inline;
@@ -304,7 +376,6 @@ kbd, .key {
 kbd[title], .key[title] {
 	cursor: help;
 }
-
 /* Dark style for display on light background. This is the default style. */
 kbd, kbd.dark, .dark-keys kbd, .key, .key.dark, .dark-keys .key {
 	background: rgb(80, 80, 80);
@@ -316,7 +387,6 @@ kbd, kbd.dark, .dark-keys kbd, .key, .key.dark, .dark-keys .key {
 	-webkit-box-shadow: inset 0 0 1px rgb(150, 150, 150), inset 0 -.05em .4em rgb(80, 80, 80), 0 .1em 0 rgb(30, 30, 30), 0 .1em .1em rgba(0, 0, 0, .3);
 	box-shadow: inset 0 0 1px rgb(150, 150, 150), inset 0 -.05em .4em rgb(80, 80, 80), 0 .1em 0 rgb(30, 30, 30), 0 .1em .1em rgba(0, 0, 0, .3);
 }
-
 /* Light style for display on dark background. */
 kbd.light, .light-keys kbd, .key.light, .light-keys .key {
 	background: rgb(250, 250, 250);
@@ -327,44 +397,6 @@ kbd.light, .light-keys kbd, .key.light, .light-keys .key {
 	-moz-box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
 	-webkit-box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
 	box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
-}
-
-/* Configuration Page Specific */
-#configPageHeader {
-	font: 13px sans-serif;
-	color: #CCC;
-	padding: 5px;
-	margin: 3px 3px 3px -1px;
-	top: 24px;
-	height: auto;
-}
-#configPageHeader strong {
-	color: #FFCE0D;
-}
-
-#configPage {
-	font: 11px sans-serif;
-	color: #CCC;
-	padding: 5px;
-	margin: 3px 3px 3px -1px;
-	top: 24px;
-	width: 200px;
-	height: auto;
-	border: thin solid #4D4D4D;
-}
-#configPage strong {
-	color: #FFCE0D;
-}
-
-.configTable {
-	font-size: 11px;
-	color: #CCC;
-}
-.configTable tr {
-	
-}
-.configTable td {
-	
 }
 
 /* iDevice Specific */
@@ -386,7 +418,6 @@ kbd.light, .light-keys kbd, .key.light, .light-keys .key {
 @media screen and (device-width:768px) and (orientation:portrait) {
 
 }
-
 /* iPad (Landscape) */
 @media screen and (device-width:768px) and (orientation:landscape) {
 	/* Left 'Panel' */

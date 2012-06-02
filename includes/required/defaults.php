@@ -1,5 +1,5 @@
 <?php
-$version = 2.3;
+$version = 2.5;
 
 /* Verify 'settings.ini' is available, if not, attempt to use defaults below; */
 $ini_ini_filename = 'settings.ini';

@@ -2,7 +2,6 @@
 /* Required Files: Start */
 require '../required/defaults.php';
 require '../required/header.php';
-require 'rpc/TCPClient.php';
 /* Required Files: End */
 
 /* Grab Personalized Settings: Start */
@@ -23,74 +22,185 @@ $xbmcuser													= $ini['xbmcuser'];
 $xbmcpass													= $ini['xbmcpass'];
 
 /* XBMC: HTTP API */
-$JSONStart  = '<a class="classpanel" target="jsonresponse" href="http://' . $xbmchost . ":" . $xbmcport . '/xbmcCmds/xbmcHttp?command=ExecBuiltIn&parameter=';
+$JSONStart  = '<a target="jsonresponse" href="http://' . $xbmchost . ":" . $xbmcport . '/xbmcCmds/xbmcHttp?command=ExecBuiltIn&parameter=';
 
 /* XBMC: JSON API */
-$params = $xbmchost . ':9090';
-// Open Connection for JSON
-try {
-    $rpc = new XBMC_RPC_TCPClient($params);
-} catch (XBMC_RPC_ConnectionException $e) {
-    die($e->getMessage());
-}
-// Currently used JSON Commands
+// Required to 'loop' the variable into JavaScript
+$wsJson			= "ws://" . $xbmchost . ":9090/jsonrpc/";
+// -- System Related -- //
+$ping			= array('{"jsonrpc": "2.0", "method": "JSONRPC.Ping", "id": 1}');
+$introspect		= array('{"jsonrpc": "2.0", "method": "JSONRPC.Introspect", "id": "1"}');
+$XBMCReboot		= array('{"jsonrpc": "2.0", "method": "Application.Reboot", "id": "1"}');
+$XBMCQuit		= array('{"jsonrpc": "2.0", "method": "Application.Quit", "id": "1"}');
+// -- Subtitles -- //
+$SubtitleOn		= array('{"jsonrpc": "2.0", "method": "Player.SetSubtitle", "params": {"playerid": 1, "subtitle" : "on"}, "id": "1"}');
+$SubtitleOff	= array('{"jsonrpc": "2.0", "method": "Player.SetSubtitle", "params": {"playerid": 1, "subtitle" : "off"}, "id": "1"}');
+// -- Volume -- //
+$VolMute		= array('{"jsonrpc": "2.0", "method": "Application.SetMute", "params": {"mute": "toggle"}, "id": "1"}');
+$VolUp			= array('{"jsonrpc": "2.0", "method": "Application.SetVolume", "params": {"volume": "increment"}, "id": "1"}');
+$VolDown		= array('{"jsonrpc": "2.0", "method": "Application.SetVolume", "params": {"volume": "decrement"}, "id": "1"}');
+$VolMax			= array('{"jsonrpc": "2.0", "method": "Application.SetVolume", "params": {"volume": 100}, "id": "1"}');
+// -- Library Scan/Update -- //
+$ScanVidLib		= array('{"jsonrpc": "2.0", "method": "VideoLibrary.Scan", "id": "1"}');
+$ScanAudLib		= array('{"jsonrpc": "2.0", "method": "AudioLibrary.Scan", "id": "1"}');
+$VidClean		= array('{"jsonrpc": "2.0", "method": "VideoLibrary.Clean", "id": "1"}');
+$AudClean		= array('{"jsonrpc": "2.0", "method": "AudioLibrary.Clean", "id": "1"}');
+// Video Library
+$VidPlayPause	= array('{"jsonrpc": "2.0", "method": "Player.PlayPause", "params": {"playerid": 1}, "id": "1"}');
+$VidStop		= array('{"jsonrpc": "2.0", "method": "Player.Stop", "params": {"playerid": 1}, "id": "1"}');
+
+// Currently Broken JSON Commands
 
 ?>
 <link rel="stylesheet" type="text/css" href="../css/portal.css" />
-<?php if ($ini['developer']=="1")
-		echo '<div id="commands" align="center"><a class="classpanel" href="remote.php" target="_self">Reload Panel</a><a class="classpanel" href="example.php" target="_self">JSON Tester</a></div><br />';
-?>
-<p style="color:white">Well, I know this page looks like crap... for now, I'm just screwing around with a layout... and trying to figure out some things with JSON.</p>
+<meta charset="utf-8" />
+<script language="javascript" type="text/javascript">
+	var $wsJson = '<?php echo $wsJson; ?>';
+	var wsUri = $wsJson;
+	var output;
 
-	<div id="commands">Commands (JSON API):</div>
-	<div id="commands"><strong>XBMC's Current Time:</strong>
-	<?php
-		try {
-			if ($rpc->isLegacy()) {
-				$response = $rpc->System->GetInfoLabels(array('System.Time'));
-			} else {
-				$response = $rpc->XBMC->GetInfoLabels(array('labels' => array('System.Time')));
-			}
-		} catch (XBMC_RPC_Exception $e) {
-			die($e->getMessage());
-		}
-		printf('%s', $response['System.Time']);
-	?>
+	function init() {
+		output = document.getElementById("output");
+		testWebSocket();
+	}
+
+	function testWebSocket() {
+		websocket = new WebSocket(wsUri);
+		websocket.onopen = function(evt) { onOpen(evt) };
+		websocket.onmessage = function(evt) { onMessage(evt) };
+		websocket.onerror = function(evt) { onError(evt) };
+	}
+
+	function onOpen(evt) {
+		doSend('{"jsonrpc": "2.0", "method": "JSONRPC.Ping", "id": 1}');
+	}
+
+	function onMessage(evt) {
+		writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
+	}
+
+	function onError(evt) {
+		writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+	}
+
+	function doSend(message) {
+		writeToScreen("SENT: " + message);
+		websocket.send(message);
+	}
+
+	function writeToScreen(message) {
+		var pre = document.createElement("p");
+		pre.style.wordWrap = "break-word";
+		pre.innerHTML = message;
+		output.appendChild(pre);
+	}
+
+	window.addEventListener("load", init, false);
+</script>
+<?php if ($ini['developer']=="1") { ?>
+	<div id="remote" style="width: 275px">
+		<center>
+			<a href="remote.php" target="_self">Reload Panel</a>&nbsp;
+			<button name='Introspect' onClick='doSend(<?php echo json_encode($ping); ?>)'>Ping</button>&nbsp;
+			<button name='Introspect' onClick='doSend(<?php echo json_encode($introspect); ?>)'>Introspect</button>
+		</center>
 	</div>
-	<div id="commands">
-		<?php ?>
-	</div>
-	<br /><br />
-	<div id="commands">Commands (HTTP API):</div>
-	<div id="commands"><strong>XBMC </strong>
-		<?php echo $JSONStart ?>XBMC.TakeScreenshot">Screenshot</a>
-		<?php echo $JSONStart ?>XBMC.Action(ShowSubtitles)">Subtitles</a>
-	</div>
-	<div id="commands"><strong>Control </strong>
+<?php } elseif ($ini['developer']!=="1") { ?>
+<img border="0" src="../images/site/logo-big.png" />
+<?php } ?>
+
+<table id="remote" border="0">
+  <tr>
+    <td colspan="3" width="49%">Commands (HTTP API): <strong>For Dharma and Eden</strong></td>
+    <td width="1%">&nbsp;</td>
+    <td colspan="3" width="49%">Commands (JSON API): <strong>For Pre-Frodo (March 25, 2012 or Newer Required)</strong></td>
+  </tr>
+  <tr>
+    <td width="10%"><strong>Control</strong></td>
+    <td align="right">
+		<?php echo $JSONStart ?>XBMC.PlayerControl(Stop)">Stop</a>
 		<?php echo $JSONStart ?>XBMC.PlayerControl(Play)">Pause</a>
-		<?php echo $JSONStart ?>XBMC.Reboot">Reboot</a> 
-	</div>
-	<div id="commands"><strong>Volume </strong>
+	</td>
+    <td>
+		<?php echo $JSONStart ?>XBMC.Reboot">Reboot</a>
+		<?php echo $JSONStart ?>XBMC.Quit">Quit</a>
+	</td>
+    <td>&nbsp;</td>
+    <td width="10%"><strong>Control</strong></td>
+    <td align="right">
+		<button name='VidStop' onClick='doSend(<?php echo json_encode($VidStop);?>)'>Stop</button>
+		<button name='VidPlayPause' onClick='doSend(<?php echo json_encode($VidPlayPause);?>)'>Pause</button>
+	</td>
+    <td>
+		<button name='XBMCReboot' onClick='doSend(<?php echo json_encode($XBMCReboot);?>)'>Reboot</button>
+		<button name='XBMCQuit' onClick='doSend(<?php echo json_encode($XBMCQuit);?>)'>Quit</button>
+	</td>
+  </tr>
+  <tr>
+    <td><strong>Libraries (V|A)</strong></td>
+    <td align="right">
+		<?php echo $JSONStart ?>XBMC.UpdateLibrary(video)" title="Video Library">Update</a>
+		<?php echo $JSONStart ?>XBMC.CleanLibrary(video)" title="Video Library">Clean</a>
+	</td>
+    <td>
+		<?php echo $JSONStart ?>XBMC.UpdateLibrary(music)" title="Audio Library">Update</a>
+		<?php echo $JSONStart ?>XBMC.CleanLibrary(music)" title="Audio Library">Clean</a>
+	</td>
+    <td>&nbsp;</td>
+    <td><strong>Libraries (V|A)</strong></td>
+    <td align="right">
+		<button title="Video Library" name='VidScan' onClick='doSend(<?php echo json_encode($ScanVidLib); ?>)'>Update</button>
+		<button title="Video Library" name='VidClean' onClick='doSend(<?php echo json_encode($VidClean); ?>)'>Clean</button>
+	</td>
+    <td>
+		<button title="Audio Library" name='AudScan' onClick='doSend(<?php echo json_encode($ScanAudLib); ?>)'>Update</button>
+		<button title="Audio Library" name='AudClean' onClick='doSend(<?php echo json_encode($AudClean); ?>)'>Clean</button>
+	</td>
+  </tr>
+  <tr>
+    <td><strong>Volume</strong></td>
+    <td align="right">
+		<?php echo $JSONStart ?>XBMC.Action(VolumeDown)" title="Volume Down">&downarrow;</a>
+		<?php echo $JSONStart ?>XBMC.Action(VolumeUp)" title="Volume Up">&uparrow;</a>
+	</td>
+    <td>
 		<?php echo $JSONStart ?>XBMC.Mute">Mute</a>
-		<?php echo $JSONStart ?>XBMC.Action(VolumeUp)">&uparrow;</a>
-		<?php echo $JSONStart ?>XBMC.Action(VolumeDown)">&downarrow;</a>
 		<?php echo $JSONStart ?>XBMC.SetVolume(100%,showvolumebar)">Max</a>
-	</div>
-	<!-- Haven't found the correct code for these yet
-	<div id="commands"><strong>Watched </strong>
-		<?php echo $JSONStart ?>XBMC.Action(SetWatched)">(un)Mark</a>
-		<?php echo $JSONStart ?>XBMC.">Toggle</a>
-	</div>
-	-->
-	<div id="commands"><strong>Video </strong>
-		<?php echo $JSONStart ?>XBMC.UpdateLibrary(video)">Update</a>
-		<?php echo $JSONStart ?>XBMC.CleanLibrary(video)">Clean</a>
-	</div>
-	<div id="commands"><strong>Music </strong>
-		<?php echo $JSONStart ?>XBMC.UpdateLibrary(music)">Update</a>
-		<?php echo $JSONStart ?>XBMC.CleanLibrary(music)">Clean</a>
-	</div>
+	</td>
+    <td>&nbsp;</td>
+    <td><strong>Volume</strong></td>
+    <td align="right">
+		<button title="Volume Down" name='VolDown' onClick='doSend(<?php echo json_encode($VolDown);?>)'>&downarrow;</button>
+		<button title="Volume Up" name='VolUp' onClick='doSend(<?php echo json_encode($VolUp);?>)'>&uparrow;</button>
+	</td>
+    <td>
+		<button name='VolMute' onClick='doSend(<?php echo json_encode($VolMute);?>)'>Mute</button>
+		<button name='VolMax' onClick='doSend(<?php echo json_encode($VolMax);?>)'>Max</button>
+	</td>
+  </tr>
+  <tr>
+    <td><strong>Subtitles</strong></td>
+    <td colspan="2" align="center"><?php echo $JSONStart ?>XBMC.Action(ShowSubtitles)">Toggle</a></td>
+    <td>&nbsp;</td>
+    <td><strong>Subtitles</strong></td>
+    <td align="right">
+		<button name='SubtitleOn' onClick='doSend(<?php echo json_encode($SubtitleOn);?>)'>On</button>
+	</td>
+    <td>
+		<button name='SubtitleOff' onClick='doSend(<?php echo json_encode($SubtitleOff);?>)'>Off</button>
+	</td>
+  </tr>
+  <tr>
+    <td><strong>Screenshot</strong></td>
+    <td colspan="2" align="center"><?php echo $JSONStart ?>XBMC.TakeScreenshot">Take Screenshot</a></td>
+    <td>&nbsp;</td>
+    <td><strong>Screenshot</strong></td>
+    <td colspan="2" align="center">Not Available</td>
+  </tr>
+</table>
 
+
+<!--
 <table align="right" border="0" cellpadding="1" cellspacing="0" draggable="false">
 	<tr>
     	<td></td>
@@ -103,7 +213,9 @@ try {
     	<td><kbd>&rarr;</kbd></td>
     </tr>
 </table> 
+-->
 
+<?php if ($ini['developer']=="1") { echo '<hr><div id="output"></div>'; } elseif ($ini['developer']!=="1") { echo '<div id="output" hidden="yes"></div>'; } ?>
 <!-- JSON Fix: Start -->
 <div id="json"><iframe hidden="yes" id="jsonresponse" name="jsonresponse" src=""></iframe></div>
 <!-- JSON Fix: End -->
